@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %} {% from 'bootstrap5/form.html' import render_form %}
+{% block title %} Folders {% endblock %} {% block content %}
+<div class="container mt-10 p-5">
+    <div class="row mt-10 p-3">
+        <div class="col-md-6 col-lg-6 mx-lg-auto mx-md-auto d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="{{ url_for('main.index') }}"><button class="btn btn-info" type="submit">Go to Files</button></a>
+        </div>
+
+        <div class="col-md-6 col-lg-6 mx-lg-auto mx-md-auto d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{{ url_for('folders.add') }}"><button class="btn btn-success" type="submit"> + New</button></a>
+        </div>
+    </div>
+    <h3 class="pt-5 pb-2">Folders</h3>
+    <hr/>
+
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for folder in folders %}
+        <tr class="lead">
+            <td>{{ folder.name}}</td>
+            <td><a href="{{url_for('folders.edit',folder_id=folder._id)}}"><button class="btn btn-primary" type="submit">Edit</button></a></td>
+            <td><a href="{{url_for('folders.delete',folder_id=folder._id)}}"><button class="btn btn-danger" type="submit">Delete</button></a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
