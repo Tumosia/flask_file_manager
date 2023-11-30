@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %} {% from 'bootstrap5/form.html' import render_form %}
+{% block title %} Files {% endblock %} {% block content %}
+<div class="container mt-10 p-5">
+    <div class="row mt-10 p-3">
+        <div class="col-md-6 col-lg-6 mx-lg-auto mx-md-auto d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="{{ url_for('folders.index')}}"><button class="btn btn-info" type="submit">Go to Folders</button></a>
+        </div>
+
+        <div class="col-md-6 col-lg-6 mx-lg-auto mx-md-auto d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="{{ url_for('files.add')}}"><button class="btn btn-success" type="submit"> + New</button></a>
+        </div>
+    </div>
+    <h3 class="pt-5 pb-2">Files</h3>
+    <hr/>
+
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Folder</th>
+            <th>Download</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        {% for file in files %}
+        <tr class="lead">
+            <td>{{ file.name}}</td>
+            <td>{{ file.folder }}</td>
+            <td><a href="{{url_for('files.download',file_id=file._id)}}"><button class="btn btn-link" type="submit">{{ file.file}}</button></a></td>
+            <td><a href="{{url_for('files.edit',file_id=file._id)}}"><button class="btn btn-primary" type="submit">Edit</button></a></td>
+            <td><a href="{{url_for('files.delete',file_id=file._id)}}"><button class="btn btn-danger" type="submit">Delete</button></a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}
