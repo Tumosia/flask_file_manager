@@ -36,7 +36,6 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     --mount=type=bind,source=requirements.txt,target=requirements.txt \
     pip3 install -r requirements.txt
 
-RUN chmod -R 777 ./
 
 # Switch to the non-privileged user to run the application.
 USER appuser
