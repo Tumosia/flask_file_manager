@@ -1,4 +1,4 @@
 from pymongo import MongoClient
 
-client = MongoClient("mongodb+srv://cheroptumosia:QLErRitSWz8IYOoA@filemanager.r2s2war.mongodb.net/")
+client = MongoClient(<mongo_uri>)
 db = client['FileSystem']
